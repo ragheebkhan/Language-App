@@ -801,22 +801,22 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    Android: FG_GCSR
-    CloudRendering: FG_GCSR
-    EmbeddedLinux: FG_GCSR
+    Android: FG_GCSR;UNITY_POST_PROCESSING_STACK_V2
+    CloudRendering: FG_GCSR;UNITY_POST_PROCESSING_STACK_V2
+    EmbeddedLinux: FG_GCSR;UNITY_POST_PROCESSING_STACK_V2
     GameCoreScarlett: FG_GCSR
-    GameCoreXboxOne: FG_GCSR
-    Lumin: FG_GCSR
-    Nintendo Switch: FG_GCSR
-    PS4: FG_GCSR
-    PS5: FG_GCSR
-    Stadia: FG_GCSR
-    Standalone: FG_GCSR
-    WebGL: FG_GCSR
-    Windows Store Apps: FG_GCSR
-    XboxOne: FG_GCSR
+    GameCoreXboxOne: FG_GCSR;UNITY_POST_PROCESSING_STACK_V2
+    Lumin: FG_GCSR;UNITY_POST_PROCESSING_STACK_V2
+    Nintendo Switch: FG_GCSR;UNITY_POST_PROCESSING_STACK_V2
+    PS4: FG_GCSR;UNITY_POST_PROCESSING_STACK_V2
+    PS5: FG_GCSR;UNITY_POST_PROCESSING_STACK_V2
+    Stadia: FG_GCSR;UNITY_POST_PROCESSING_STACK_V2
+    Standalone: FG_GCSR;UNITY_POST_PROCESSING_STACK_V2
+    WebGL: FG_GCSR;UNITY_POST_PROCESSING_STACK_V2
+    Windows Store Apps: FG_GCSR;UNITY_POST_PROCESSING_STACK_V2
+    XboxOne: FG_GCSR;UNITY_POST_PROCESSING_STACK_V2
     iPhone: FG_GCSR
-    tvOS: FG_GCSR
+    tvOS: FG_GCSR;UNITY_POST_PROCESSING_STACK_V2
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
