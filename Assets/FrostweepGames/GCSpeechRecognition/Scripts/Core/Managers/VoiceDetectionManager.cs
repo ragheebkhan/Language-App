@@ -38,6 +38,9 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 		{
 			GCSpeechRecognition.Instance.StartCoroutine(_mediaManager.OneTimeRecord(durationSec, (samples) =>
 			{
+                if (samples == null || samples.Length == 0)
+                    return;
+
                 float accum = 0f;
                 for (int i = 0; i < samples.Length; i++)
                 {

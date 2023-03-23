@@ -1,0 +1,25 @@
+GridBackground {
+    --grid-background-color: rgb(40, 40, 40);
+    --line-color: rgba(193, 196, 192, 0.1);
+    --thick-line-color: rgba(193, 196, 192, 0.1);
+    --spacing: 20;
+}
+
+.my-text-field > .unity-label {
+    width: 79px;
+    min-width: 1px;
+}
+
+.my-text-field > .unity-label > .unity-text-element {
+    min-width: 1px;
+    width: 1px;
+    align-items: center;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+.my-text-field > .unity-text-field__input {
+    width: 150px;
+    max-width: 150px;
+    min-width: 150px;
+}

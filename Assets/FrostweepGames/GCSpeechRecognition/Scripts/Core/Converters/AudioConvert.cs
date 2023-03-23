@@ -28,7 +28,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 			return System.Convert.ToBase64String(audioArray);
 		}
 
-		public static string Convert(float[] raw, Enumerators.AudioEncoding encoding, bool increaseVolume = false, float volume = 1f)
+		public static string Convert(float[] raw, Enumerators.AudioEncoding encoding, int channels, bool increaseVolume = false, float volume = 1f)
 		{
 			byte[] audioArray;
 
@@ -41,7 +41,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 							raw = AudioClip2ByteConverter.ByteToFloat(AudioClipRaw2ByteConverter.AudioClipRawToByte(raw, increaseVolume, volume));
 						}
 
-						audioArray = AudioClipRaw2PCMConverter.AudioClipRaw2PCM(raw);
+						audioArray = AudioClipRaw2PCMConverter.AudioClipRaw2PCM(raw, channels);
 					}
 					break;
 				default:
@@ -63,9 +63,9 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 			return Convert(clip, encoding, increaseVolume, volume);
 		}
 
-		public static string ToBase64(this float[] rawAudioClipData, Enumerators.AudioEncoding encoding = Enumerators.AudioEncoding.LINEAR16, bool increaseVolume = false, float volume = 1f)
+		public static string ToBase64(this float[] rawAudioClipData, Enumerators.AudioEncoding encoding = Enumerators.AudioEncoding.LINEAR16, int channels = 1, bool increaseVolume = false, float volume = 1f)
 		{
-			return Convert(rawAudioClipData, encoding, increaseVolume, volume);
+			return Convert(rawAudioClipData, encoding, channels, increaseVolume, volume);
 		}
 	}
 }

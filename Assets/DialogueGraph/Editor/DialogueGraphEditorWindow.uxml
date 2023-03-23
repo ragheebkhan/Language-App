@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Editor/DialogueGraphEditorWindow.uss?fileID=7433441132597879392&amp;guid=400e1c15998d68b4cbc6bdf86ba5fd9a&amp;type=3#DialogueGraphEditorWindow" />
+    <uie:Toolbar style="min-width: 400px;">
+        <ui:TextField picking-mode="Ignore" label="Graph Name:" max-length="-1" name="Graph_Name" class="my-text-field" style="-unity-text-align: upper-center;" />
+        <ui:Button text="Save Graph" display-tooltip-when-elided="true" name="Save_Button" />
+        <uie:ToolbarSpacer />
+        <ui:Button text="Load Graph" display-tooltip-when-elided="true" name="Load_Button" />
+    </uie:Toolbar>
+    <DialogueGraphView focusable="true" style="flex-grow: 1; min-width: auto; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px;" />
+</ui:UXML>

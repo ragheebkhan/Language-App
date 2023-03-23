@@ -9,22 +9,22 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
     {
         private const int HEADER_SIZE = 44;
 
-        public static byte[] AudioClipRaw2PCM(float[] raw)
+        public static byte[] AudioClipRaw2PCM(float[] raw, int channels)
         {
             MemoryStream stream = new MemoryStream();
             using (var fileStream = CreateEmpty(stream))
             {
                 ConvertAndWrite(fileStream, raw);
 
-                WriteHeader(fileStream);
+                WriteHeader(fileStream, channels);
 
                 return fileStream.ToArray();
             }
         }
 
-        private static float[] TrimSilence(float[] samples, float min)
+        private static float[] TrimSilence(float[] samples, float min, int channels)
         {
-            return TrimSilence(new List<float>(samples), min, 1, 16000);
+            return TrimSilence(new List<float>(samples), min, channels, 16000);
         }
 
         private static float[] TrimSilence(List<float> samples, float min, int channels, int hz)
@@ -88,10 +88,9 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
             mstream.Write(bytesData, 0, bytesData.Length);
         }
 
-        private static void WriteHeader(MemoryStream mstream)
+        private static void WriteHeader(MemoryStream mstream, int channels)
         {
             var hz = 16000;
-            var channels = 1;
             var samples = 16000;
 
             mstream.Seek(0, SeekOrigin.Begin);

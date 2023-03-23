@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db66e6369f136fe408fe13c0035dafa5, type: 3}
+  m_Name: testdialogue2
+  m_EditorClassIdentifier: 
+  StartNode:
+    Guid: c6173f2a-024b-44e6-99a1-12d314dff01d
+    Position:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    DialogueLineText: Test Dialogue 2
+  Nodes:
+  - rid: 9160350734979956751
+  - rid: 9160350734979956752
+  - rid: 9160350734979956753
+  - rid: 9160350734979956754
+  - rid: 9160350734979956755
+  NodeLinks:
+  - BaseNodeGuid: c6173f2a-024b-44e6-99a1-12d314dff01d
+    ChoiceText: Test Dialogue 2
+    TargetNodeGuid: e3b78032-cf50-41d7-9078-23ee57c22c3f
+  - BaseNodeGuid: e3b78032-cf50-41d7-9078-23ee57c22c3f
+    ChoiceText: a
+    TargetNodeGuid: f5096ea6-ccc5-4aad-a9a0-2850e683f2e5
+  - BaseNodeGuid: e3b78032-cf50-41d7-9078-23ee57c22c3f
+    ChoiceText: b
+    TargetNodeGuid: 1a2e5e73-fd47-4005-a05b-52a0314b096d
+  - BaseNodeGuid: f5096ea6-ccc5-4aad-a9a0-2850e683f2e5
+    ChoiceText: Option 1
+    TargetNodeGuid: c6b555d7-d9c4-4815-879f-7fbe39a9a891
+  - BaseNodeGuid: f5096ea6-ccc5-4aad-a9a0-2850e683f2e5
+    ChoiceText: Option 2
+    TargetNodeGuid: cc35c859-afc2-49dd-826f-2b10fc12e709
+  references:
+    version: 2
+    RefIds:
+    - rid: 9160350734979956751
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: e3b78032-cf50-41d7-9078-23ee57c22c3f
+        Position:
+          serializedVersion: 2
+          x: 350
+          y: 0
+          width: 206
+          height: 122
+        DialogueLineText: c
+    - rid: 9160350734979956752
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: f5096ea6-ccc5-4aad-a9a0-2850e683f2e5
+        Position:
+          serializedVersion: 2
+          x: 671
+          y: -49
+          width: 206
+          height: 122
+        DialogueLineText: d
+    - rid: 9160350734979956753
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 1a2e5e73-fd47-4005-a05b-52a0314b096d
+        Position:
+          serializedVersion: 2
+          x: 671
+          y: 99
+          width: 206
+          height: 98
+        DialogueLineText: e
+    - rid: 9160350734979956754
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: c6b555d7-d9c4-4815-879f-7fbe39a9a891
+        Position:
+          serializedVersion: 2
+          x: 973
+          y: -49
+          width: 206
+          height: 98
+        DialogueLineText: f
+    - rid: 9160350734979956755
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: cc35c859-afc2-49dd-826f-2b10fc12e709
+        Position:
+          serializedVersion: 2
+          x: 961
+          y: 99
+          width: 206
+          height: 98
+        DialogueLineText: g

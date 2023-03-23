@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using FrostweepGames.Plugins.Core;
-using FrostweepGames.Plugins.Native;
 using System.Collections;
-
+using FrostweepGames.Plugins.Native;
+#if FG_MPRO
+using Microphone = FrostweepGames.MicrophonePro.Microphone;
+#endif
 namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 {
     public class MediaManager : IService, IMediaManager
     {
+		private const int _Frequency = 16000;
+
 		public event Action MicrophoneDeviceSelectedEvent;
 
 		public event Action RecordStartedEvent;
@@ -39,6 +43,10 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 
 		private float _endTalkingDelay;
 
+		private bool _permissionGranted;
+
+		private int _channels;
+
         public bool IsRecording { get; private set; }
 		public string MicrophoneDevice { get; private set; }
 		public AudioClip LastRecordedClip { get; private set; }
@@ -49,14 +57,23 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
         {
 			_voiceDetectionManager = ServiceLocator.Get<IVoiceDetectionManager>();
 			_speechRecognitionManager = ServiceLocator.Get<ISpeechRecognitionManager>();
-		}
 
-		public void Update()
+#if UNITY_EDITOR || UNITY_STANDALONE
+            _permissionGranted = true;
+#endif
+#if FG_MPRO
+            Microphone.PermissionChangedEvent += PermissionChangedEventHandler;
+			Microphone.RecordStreamDataEvent += RecordStreamDataEventHandler;
+#endif
+        }
+
+        public void Update()
         {
+#if !FG_MPRO || UNITY_EDITOR
             if (IsRecording)
             {
-                _currentSamplePosition = CustomMicrophone.GetPosition(MicrophoneDevice);
-				CustomMicrophone.GetRawData(ref _currentAudioSamples, _microphoneWorkingAudioClip);
+                _currentSamplePosition = Microphone.GetPosition(MicrophoneDevice);
+                CustomMicrophone.GetData(_currentAudioSamples, 0, _microphoneWorkingAudioClip);
 
 				if (DetectVoice)
                 {
@@ -102,11 +119,16 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 
                 _previousSamplePosition = _currentSamplePosition;
             }
+#endif
         }
 
         public void Dispose()
         {
-			if (_microphoneWorkingAudioClip != null)
+#if FG_MPRO
+            Microphone.PermissionChangedEvent -= PermissionChangedEventHandler;
+            Microphone.RecordStreamDataEvent -= RecordStreamDataEventHandler;
+#endif
+            if (_microphoneWorkingAudioClip != null)
 			{
 				MonoBehaviour.Destroy(_microphoneWorkingAudioClip);
 				_microphoneWorkingAudioClip = null;
@@ -121,7 +143,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 
 		public float GetLastFrame()
 		{
-			int minValue = 16000 / 8;
+			int minValue = _Frequency / 8;
 
 			if (_currentRecordingVoice == null || _currentRecordingVoice.Count < minValue)
 				return 0;
@@ -171,9 +193,14 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 				MonoBehaviour.Destroy(LastRecordedClip);
 			}
 
-			_microphoneWorkingAudioClip = CustomMicrophone.Start(MicrophoneDevice, true, 1, 16000);
+			_microphoneWorkingAudioClip = Microphone.Start(MicrophoneDevice, true, 1, _Frequency);
 
-			_currentAudioSamples = new float[_microphoneWorkingAudioClip.samples * _microphoneWorkingAudioClip.channels];
+			_channels = _microphoneWorkingAudioClip.channels;
+
+#if FG_MPRO && !UNITY_EDITOR
+			_channels = 1;
+#endif
+            _currentAudioSamples = new float[_Frequency * _channels];
 
 			IsRecording = true;
 
@@ -187,12 +214,12 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 
 			IsRecording = false;
 
-			CustomMicrophone.End(MicrophoneDevice);
+			Microphone.End(MicrophoneDevice);
 
 			if (!DetectVoice)
 			{
 				LastRecordedRaw = _currentRecordingVoice.ToArray();
-				LastRecordedClip = AudioConvert.Convert(LastRecordedRaw, _microphoneWorkingAudioClip.channels);			
+				LastRecordedClip = AudioConvert.Convert(LastRecordedRaw, _channels);			
 			} 
 			else
 			{
@@ -218,7 +245,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 
 		public bool HasConnectedMicrophoneDevices()
 		{
-			return CustomMicrophone.HasConnectedMicrophoneDevices();
+			return Microphone.devices.Length > 0;
 		}
 
 		public void SetMicrophoneDevice(string device)
@@ -236,7 +263,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 
 		public string[] GetMicrophoneDevices()
 		{
-			return CustomMicrophone.devices;
+			return Microphone.devices;
 		}
 
 		public void SaveLastRecordedAudioClip(string path)
@@ -245,7 +272,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 			{
 				try
 				{
-#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_ANDROID || UNITY_IPHONE
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_ANDROID || UNITY_IOS
 					File.WriteAllBytes(path, AudioClip2PCMConverter.AudioClip2PCM(LastRecordedClip));
 #endif
 				}
@@ -259,23 +286,34 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 
 		public IEnumerator OneTimeRecord(int durationSec, Action<float[]> callback, int sampleRate = 16000)
 		{
-			AudioClip clip = CustomMicrophone.Start(MicrophoneDevice, false, durationSec, sampleRate);
+			if (HasMicrophonePermission() && Microphone.devices.Length > 0)
+			{
+				AudioClip clip = Microphone.Start(Microphone.devices[0], false, durationSec, sampleRate);
 
-			yield return new WaitForSeconds(durationSec);
+				yield return new WaitForSeconds(durationSec);
 
-			CustomMicrophone.End(MicrophoneDevice);
+				Microphone.End(Microphone.devices[0]);
 
-			float[] array = new float[clip.samples * clip.channels];
+				float[] array = new float[sampleRate * durationSec * clip.channels];
 
-			CustomMicrophone.GetRawData(ref array, clip);
+				CustomMicrophone.GetData(array, 0, clip);
 
-			callback?.Invoke(array);
+				callback?.Invoke(array);
+			}
+            else
+            {
+                callback?.Invoke(null);
+            }
 		}
 
 		public bool HasMicrophonePermission()
 		{
+#if FG_MPRO
+			return _permissionGranted;
+#else
 			return CustomMicrophone.HasMicrophonePermission();
-		}
+#endif
+        }
 
 		/// <summary>
 		/// Currently works as synchronous function with callback when app unpauses
@@ -284,9 +322,12 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 		/// <param name="callback"></param>
 		public void RequestMicrophonePermission(Action<bool> callback)
 		{
+#if FG_MPRO
+			Microphone.RequestPermission();
+#else
 			CustomMicrophone.RequestMicrophonePermission();
-			CustomMicrophone.RefreshMicrophoneDevices();
-			callback?.Invoke(HasMicrophonePermission());
+#endif
+            callback?.Invoke(HasMicrophonePermission());
 		}
 
 		private void AddAudioSamplesIntoBuffer()
@@ -350,5 +391,65 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 
 			_previousSamplePosition = _currentSamplePosition;
 		}
-	}
+#if FG_MPRO
+        private void PermissionChangedEventHandler(bool granted)
+        {
+            _permissionGranted = granted;
+
+			if (granted && Microphone.devices.Length > 0)
+            {
+				SetMicrophoneDevice(Microphone.devices[0]);
+			}
+			else
+            {
+				SetMicrophoneDevice(null);
+            }
+        }
+
+		private void RecordStreamDataEventHandler(Microphone.StreamData streamData)
+        {
+            if (DetectVoice)
+            {
+                bool isTalking = _voiceDetectionManager.HasDetectedVoice(streamData.ChannelsData[0]);
+
+                if (isTalking)
+                {
+                    _endTalkingDelay = 0f;
+                }
+                else
+                {
+                    _endTalkingDelay += Time.deltaTime;
+                }
+
+                if (!_isTalking && isTalking)
+                {
+                    _currentRecordingVoice.AddRange(streamData.ChannelsData[0]);
+
+                    _isTalking = true;
+
+                    TalkBeganEvent?.Invoke();
+                }
+                else if (_isTalking && !isTalking && _endTalkingDelay >= _speechRecognitionManager.CurrentConfig.voiceDetectionEndTalkingDelay)
+                {
+                    _isTalking = false;
+
+                    LastRecordedRaw = _currentRecordingVoice.ToArray();
+                    LastRecordedClip = AudioConvert.Convert(LastRecordedRaw, _channels);
+
+                    _currentRecordingVoice.Clear();
+
+                    TalkEndedEvent?.Invoke(LastRecordedClip, LastRecordedRaw);
+                }
+                else if (_isTalking && isTalking)
+                {
+                    _currentRecordingVoice.AddRange(streamData.ChannelsData[0]);
+                }
+            }
+            else
+            {
+                _currentRecordingVoice.AddRange(streamData.ChannelsData[0]);
+            }
+        }
+#endif
+    }
 }
