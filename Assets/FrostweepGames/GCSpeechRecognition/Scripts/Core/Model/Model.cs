@@ -48,7 +48,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 			{
 				encoding = Enumerators.AudioEncoding.LINEAR16,
 				sampleRateHertz = 16000,
-				audioChannelCount = 2,
+				audioChannelCount = 1,
 				enableSeparateRecognitionPerChannel = false,
 				maxAlternatives = 10,
 				profanityFilter = false,
@@ -84,7 +84,13 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 		}
 	}
 
-	[Serializable]
+    [Serializable]
+    public class TranscriptOutputConfig
+    {
+		public string gcsUri;
+    }
+
+    [Serializable]
 	public class SpeakerDiarizationConfig
 	{
 		public bool enableSpeakerDiarization;
@@ -226,5 +232,11 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
     {
         public RecognitionConfig config = new RecognitionConfig();
         public RecognitionAudio audio = new RecognitionAudio();
+    }
+
+    [Serializable]
+    public class LongRunningRecognitionRequest : GeneralRecognitionRequest
+    {
+		public TranscriptOutputConfig outputConfig = new TranscriptOutputConfig();
     }
 }

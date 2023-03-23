@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Text;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -53,30 +53,30 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples
 			_speechRecognition.BeginTalkigEvent += BeginTalkigEventHandler;
 			_speechRecognition.EndTalkigEvent += EndTalkigEventHandler;
 
-			_startRecordButton = GameObject.Find("UI/UI Canvas/Speech Interaction/Start").GetComponent<Button>();
-			_stopRecordButton = GameObject.Find("UI/UI Canvas/Speech Interaction/Stop").GetComponent<Button>();
-			_getOperationButton = GameObject.Find("Speech Recognition Buttons/Button_GetOperation").GetComponent<Button>();
-			_getListOperationsButton = GameObject.Find("Speech Recognition Buttons/Button_GetListOperations").GetComponent<Button>();
-			_detectThresholdButton = GameObject.Find("Speech Recognition Buttons/Button_DetectThreshold").GetComponent<Button>();
-			_cancelAllRequestsButton = GameObject.Find("Speech Recognition Buttons/Button_CancelAllRequests").GetComponent<Button>();
-			_recognizeButton = GameObject.Find("Speech Recognition Buttons/Button_Recognize").GetComponent<Button>();
-			_refreshMicrophonesButton = GameObject.Find("Speech Recognition Buttons/Button_RefreshMics").GetComponent<Button>();
+			_startRecordButton = transform.Find("Canvas/Button_StartRecord").GetComponent<Button>();
+			_stopRecordButton = transform.Find("Canvas/Button_StopRecord").GetComponent<Button>();
+			_getOperationButton = transform.Find("Canvas/Button_GetOperation").GetComponent<Button>();
+			_getListOperationsButton = transform.Find("Canvas/Button_GetListOperations").GetComponent<Button>();
+			_detectThresholdButton = transform.Find("Canvas/Button_DetectThreshold").GetComponent<Button>();
+			_cancelAllRequestsButton = transform.Find("Canvas/Button_CancelAllRequests").GetComponent<Button>();
+			_recognizeButton = transform.Find("Canvas/Button_Recognize").GetComponent<Button>();
+			_refreshMicrophonesButton = transform.Find("Canvas/Button_RefreshMics").GetComponent<Button>();
 
-			_speechRecognitionState = GameObject.Find("Speech Recognition Buttons/Image_RecordState").GetComponent<Image>();
+			_speechRecognitionState = transform.Find("Canvas/Image_RecordState").GetComponent<Image>();
 
-			_resultText = GameObject.Find("Speech Recognition Buttons/Panel_ContentResult/Text_Result").GetComponent<Text>();
+			_resultText = transform.Find("Canvas/Panel_ContentResult/Text_Result").GetComponent<Text>();
 
-			_voiceDetectionToggle = GameObject.Find("Speech Recognition Buttons/Toggle_DetectVoice").GetComponent<Toggle>();
-			_recognizeDirectlyToggle = GameObject.Find("Speech Recognition Buttons/Toggle_RecognizeDirectly").GetComponent<Toggle>();
-			_longRunningRecognizeToggle = GameObject.Find("Speech Recognition Buttons/Toggle_LongRunningRecognize").GetComponent<Toggle>();
+			_voiceDetectionToggle = transform.Find("Canvas/Toggle_DetectVoice").GetComponent<Toggle>();
+			_recognizeDirectlyToggle = transform.Find("Canvas/Toggle_RecognizeDirectly").GetComponent<Toggle>();
+			_longRunningRecognizeToggle = transform.Find("Canvas/Toggle_LongRunningRecognize").GetComponent<Toggle>();
 
-			_languageDropdown = GameObject.Find("Speech Recognition Buttons/Dropdown_Language").GetComponent<Dropdown>();
-			_microphoneDevicesDropdown = GameObject.Find("Speech Recognition Buttons/Dropdown_MicrophoneDevices").GetComponent<Dropdown>();		
+			_languageDropdown = transform.Find("Canvas/Dropdown_Language").GetComponent<Dropdown>();
+			_microphoneDevicesDropdown = transform.Find("Canvas/Dropdown_MicrophoneDevices").GetComponent<Dropdown>();		
 
-			_contextPhrasesInputField = GameObject.Find("Speech Recognition Buttons/InputField_SpeechContext").GetComponent<InputField>();
-			_operationIdInputField = GameObject.Find("Speech Recognition Buttons/InputField_Operation").GetComponent<InputField>();
+			_contextPhrasesInputField = transform.Find("Canvas/InputField_SpeechContext").GetComponent<InputField>();
+			_operationIdInputField = transform.Find("Canvas/InputField_Operation").GetComponent<InputField>();
 
-			_voiceLevelImage = GameObject.Find("Speech Recognition Buttons/Panel_VoiceLevel/Image_Level").GetComponent<Image>();
+			_voiceLevelImage = transform.Find("Canvas/Panel_VoiceLevel/Image_Level").GetComponent<Image>();
 
 			_startRecordButton.onClick.AddListener(StartRecordButtonOnClickHandler);
 			_stopRecordButton.onClick.AddListener(StopRecordButtonOnClickHandler);
@@ -90,7 +90,6 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples
 			_microphoneDevicesDropdown.onValueChanged.AddListener(MicrophoneDevicesDropdownOnValueChangedEventHandler);
 
 			_startRecordButton.interactable = true;
-			GameObject.Find("UI/UI Canvas/Speech Interaction/Stop").gameObject.SetActive(false);
 			_stopRecordButton.interactable = false;
 			_speechRecognitionState.color = Color.yellow;
 
@@ -156,16 +155,10 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples
 			_speechRecognition.RequestMicrophonePermission(null);
 
 			_microphoneDevicesDropdown.ClearOptions();
+			_microphoneDevicesDropdown.AddOptions(_speechRecognition.GetMicrophoneDevices().ToList());
 
-			for (int i = 0; i < _speechRecognition.GetMicrophoneDevices().Length; i++)
-			{
-				_microphoneDevicesDropdown.options.Add(new Dropdown.OptionData(_speechRecognition.GetMicrophoneDevices()[i]));
-			}
-
-			//smart fix of dropdowns
-			_microphoneDevicesDropdown.value = 1;
-			_microphoneDevicesDropdown.value = 0;
-		}
+			MicrophoneDevicesDropdownOnValueChangedEventHandler(0);
+        }
 
 		private void MicrophoneDevicesDropdownOnValueChangedEventHandler(int value)
 		{
@@ -177,9 +170,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples
 		private void StartRecordButtonOnClickHandler()
 		{
 			_startRecordButton.interactable = false;
-			GameObject.Find("UI/UI Canvas/Speech Interaction/Start").gameObject.SetActive(false);
 			_stopRecordButton.interactable = true;
-			GameObject.Find("UI/UI Canvas/Speech Interaction/Stop").gameObject.SetActive(true);
 			_detectThresholdButton.interactable = false;
 			_resultText.text = string.Empty;
 
@@ -189,9 +180,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples
 		private void StopRecordButtonOnClickHandler()
 		{
 			_stopRecordButton.interactable = false;
-			GameObject.Find("UI/UI Canvas/Speech Interaction/Stop").gameObject.SetActive(false);
 			_startRecordButton.interactable = true;
-			GameObject.Find("UI/UI Canvas/Speech Interaction/Start").gameObject.SetActive(true);
 			_detectThresholdButton.interactable = true;
 
 			_speechRecognition.StopRecord();
@@ -283,18 +272,26 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples
 			config.audioChannelCount = clip.channels;
 			// configure other parameters of the config if need
 
-			GeneralRecognitionRequest recognitionRequest = new GeneralRecognitionRequest()
+			GeneralRecognitionRequest recognitionRequest;
+
+			if (_longRunningRecognizeToggle.isOn)
 			{
-				audio = new RecognitionAudioContent()
-				{
-					content = raw.ToBase64()
-				},
-				//audio = new RecognitionAudioUri() // for Google Cloud Storage object
-				//{
-				//	uri = "gs://bucketName/object_name"
-				//},
-				config = config
+                recognitionRequest = new LongRunningRecognitionRequest();
+            }
+            else
+            {
+                recognitionRequest = new GeneralRecognitionRequest();
+            }
+
+			recognitionRequest.audio = new RecognitionAudioContent() // for base64 data
+            {
+				content = raw.ToBase64(channels: clip.channels)
 			};
+			//recognitionRequest.audio = new RecognitionAudioUri() // for Google Cloud Storage object
+			//{
+			//	uri = "gs://bucketName/object_name"
+			//};
+			recognitionRequest.config = config;
 
 			if (_longRunningRecognizeToggle.isOn)
 			{
@@ -336,8 +333,8 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples
 
 				foreach (var item in operationsResponse.operations)
 				{
-					_resultText.text += "name: " + item.name + "; done: " + item.done + "\n";
-				}
+					_resultText.text += "name: " + item.name + ";\n";
+                }
 			}
 		}
 
@@ -346,7 +343,7 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples
 			_resultText.text = "Get Operation Success.\n";
 			_resultText.text += "name: " + operation.name + "; done: " + operation.done;
 
-			if(operation.done && (operation.error == null || string.IsNullOrEmpty(operation.error.message)))
+            if (operation.done && (operation.error == null || string.IsNullOrEmpty(operation.error.message)))
 			{
 				InsertRecognitionResponseInfo(operation.response);
 			}		
@@ -360,55 +357,48 @@ namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition.Examples
 
         private void LongRunningRecognizeSuccessEventHandler(Operation operation)
         {
-			if (operation.error != null || !string.IsNullOrEmpty(operation.error.message))
-				return;
+			if (operation.error != null && !string.IsNullOrEmpty(operation.error.message))
+			{
+                _resultText.text = "Long Running Recognize Failed: " + operation.error.message + "; operation: " + operation.name;
+                return;
+			}
 
 			_resultText.text = "Long Running Recognize Success.\n Operation name: " + operation.name;
 
-			if (operation != null && operation.response != null && operation.response.results.Length > 0)
-            {
-                _resultText.text = "Long Running Recognize Success.";
-				_resultText.text += "\n" + operation.response.results[0].alternatives[0].transcript;
+			if (operation.done)
+			{
+				if (operation.response != null && operation.response.results.Length > 0)
+				{
+					_resultText.text = "Long Running Recognize Success.";
+					_resultText.text += "\n" + operation.response.results[0].alternatives[0].transcript;
 
-				string other = "\nDetected alternatives:\n";
+					string other = "\nDetected alternatives:\n";
 
-                foreach (var result in operation.response.results)
-                {
-                    foreach (var alternative in result.alternatives)
-                    {
-						if (operation.response.results[0].alternatives[0] != alternative)
+					foreach (var result in operation.response.results)
+					{
+						foreach (var alternative in result.alternatives)
 						{
-							other += alternative.transcript + ", ";
+							if (operation.response.results[0].alternatives[0] != alternative)
+							{
+								other += alternative.transcript + ", ";
+							}
 						}
-                    }
-                }
+					}
 
-                _resultText.text += other;
-            }
-            else
-            {
-                _resultText.text = "Long Running Recognize Success. Words not detected.";
-            }
+					_resultText.text += other;
+				}
+			}
         }
 
 		private void InsertRecognitionResponseInfo(RecognitionResponse recognitionResponse)
 		{
 			if (recognitionResponse == null || recognitionResponse.results.Length == 0)
 			{
-				_resultText.text = "\nWords not detected.";
+				_resultText.text += "\nWords not detected.";
 				return;
 			}
 
 			_resultText.text += "\n" + recognitionResponse.results[0].alternatives[0].transcript;
-			string puretext = "";
-			foreach (var item in recognitionResponse.results[0].alternatives[0].words)
-			{
-				puretext +=  item.word + " ";
-			}
-			puretext = puretext.Remove(puretext.Length - 2);
-			gameObject.GetComponent<InteractionController>().speech(puretext);
-			GameObject.Find("UI/UI Canvas/Speech Interaction/Continue").gameObject.SetActive(true);
-			GameObject.Find("UI/UI Canvas/Speech Interaction/Start").gameObject.SetActive(false);
 
 			var words = recognitionResponse.results[0].alternatives[0].words;
 

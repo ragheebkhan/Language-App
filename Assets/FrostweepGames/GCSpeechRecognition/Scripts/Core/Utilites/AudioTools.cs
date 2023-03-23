@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 
-public static class AudioTools
+namespace FrostweepGames.Plugins.GoogleCloud.SpeechRecognition
 {
-    public static float[] IncreaseVolume(float[] samples, float volumeMultiplier)
+    public static class AudioTools
     {
-        float dB = (Mathf.Log(volumeMultiplier) / Mathf.Log(10.0f) * 20.0f);
-
-        float amplitude = Mathf.Pow(10, (dB / 20f));
-
-        for (int i = 0; i < samples.Length; i++)
+        public static float[] IncreaseVolume(float[] samples, float volumeMultiplier)
         {
-            samples[i] *= amplitude;
-        }
+            float dB = (Mathf.Log(volumeMultiplier) / Mathf.Log(10.0f) * 20.0f);
 
-        return samples;
+            float amplitude = Mathf.Pow(10, (dB / 20f));
+
+            for (int i = 0; i < samples.Length; i++)
+            {
+                samples[i] *= amplitude;
+            }
+
+            return samples;
+        }
     }
 }

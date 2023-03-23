@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: PL Bardamu
   fontNames:
   - PL Bardamu
+  - Arial
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 3
