@@ -25,7 +25,7 @@ public class DialogueGraphView : GraphView
 
         AddStartNode();
 
-        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/DialogueGraph/Editor/DialogueGraphEditorWindow.uss");
+        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Scripts/DialogueGraph/Editor/DialogueGraphEditorWindow.uss");
         styleSheets.Add(styleSheet);
     }
 

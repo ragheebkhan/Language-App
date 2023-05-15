@@ -1,0 +1,240 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db66e6369f136fe408fe13c0035dafa5, type: 3}
+  m_Name: completequestjohn
+  m_EditorClassIdentifier: 
+  StartNode:
+    Guid: e6c1878e-deff-46ea-a05d-c8e2c5a7f6d5
+    Position:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    DialogueLineText: Hey, I need to tell you something.
+  Nodes:
+  - rid: 5848587276972982325
+  - rid: 5848587276972982326
+  - rid: 5848587276972982327
+  - rid: 5848587276972982328
+  - rid: 5848587276972982329
+  - rid: 5848587276972982330
+  - rid: 5848587276972982331
+  - rid: 5848587276972982332
+  - rid: 5848587276972982333
+  - rid: 5848587276972982334
+  - rid: 5848587276972982335
+  - rid: 5848587276972982336
+  - rid: 5848587276972982337
+  NodeLinks:
+  - BaseNodeGuid: e6c1878e-deff-46ea-a05d-c8e2c5a7f6d5
+    ChoiceText: Hey, I need to tell you something.
+    TargetNodeGuid: 8abcc6b5-d149-4b9a-87c6-8959957572da
+  - BaseNodeGuid: 8abcc6b5-d149-4b9a-87c6-8959957572da
+    ChoiceText: '[Speech] Tell John Sam''s Message'
+    TargetNodeGuid: 567515fa-5b5d-426b-ba87-3e80ba50d485
+  - BaseNodeGuid: 8abcc6b5-d149-4b9a-87c6-8959957572da
+    ChoiceText: '[Multiple Choice] Tell John Sam''s Message'
+    TargetNodeGuid: 9e020bb4-c47e-48ce-ab97-661a2e80ced2
+  - BaseNodeGuid: 567515fa-5b5d-426b-ba87-3e80ba50d485
+    ChoiceText: Start
+    TargetNodeGuid: 0297103c-9851-4326-b75b-022a76fdb614
+  - BaseNodeGuid: 0297103c-9851-4326-b75b-022a76fdb614
+    ChoiceText: Stop
+    TargetNodeGuid: 30eda880-4ae3-4aca-9d35-00d037dda487
+  - BaseNodeGuid: 30eda880-4ae3-4aca-9d35-00d037dda487
+    ChoiceText: Try Again
+    TargetNodeGuid: 2ff48460-fa6d-4c9f-b7a2-7c3a7ed8101a
+  - BaseNodeGuid: 2ff48460-fa6d-4c9f-b7a2-7c3a7ed8101a
+    ChoiceText: Start
+    TargetNodeGuid: c7924116-2f99-4670-bf19-d3e2aeff1a6a
+  - BaseNodeGuid: c7924116-2f99-4670-bf19-d3e2aeff1a6a
+    ChoiceText: Stop
+    TargetNodeGuid: 4beb5dc5-e69e-44f6-9e2e-3f8b5c053cb7
+  - BaseNodeGuid: 4beb5dc5-e69e-44f6-9e2e-3f8b5c053cb7
+    ChoiceText: Continue
+    TargetNodeGuid: 2bdbda67-b08d-47d1-a943-4ef2858446eb
+  - BaseNodeGuid: 2bdbda67-b08d-47d1-a943-4ef2858446eb
+    ChoiceText: Continue
+    TargetNodeGuid: 684f0d0a-9c87-46d0-985f-3e95041bbab4
+  - BaseNodeGuid: 9e020bb4-c47e-48ce-ab97-661a2e80ced2
+    ChoiceText: '"Me want meet at bank tomorrow"'
+    TargetNodeGuid: 0280b715-7056-4fdc-90c7-8d7183f6d92c
+  - BaseNodeGuid: 9e020bb4-c47e-48ce-ab97-661a2e80ced2
+    ChoiceText: '"I want to meet at the bank tomorrow at noon"'
+    TargetNodeGuid: 31da715c-8dcb-4867-b1a1-9e3d9c3c0bf2
+  - BaseNodeGuid: 9e020bb4-c47e-48ce-ab97-661a2e80ced2
+    ChoiceText: '"Bank? Noon?"'
+    TargetNodeGuid: 0280b715-7056-4fdc-90c7-8d7183f6d92c
+  - BaseNodeGuid: 9e020bb4-c47e-48ce-ab97-661a2e80ced2
+    ChoiceText: '"I want to bank you at the meet noon at tomorrow"'
+    TargetNodeGuid: 0280b715-7056-4fdc-90c7-8d7183f6d92c
+  - BaseNodeGuid: 0280b715-7056-4fdc-90c7-8d7183f6d92c
+    ChoiceText: Try Again
+    TargetNodeGuid: 9e020bb4-c47e-48ce-ab97-661a2e80ced2
+  - BaseNodeGuid: 31da715c-8dcb-4867-b1a1-9e3d9c3c0bf2
+    ChoiceText: Continue
+    TargetNodeGuid: 01e8b43b-2a9a-44e6-b11b-26cc2244243f
+  - BaseNodeGuid: 01e8b43b-2a9a-44e6-b11b-26cc2244243f
+    ChoiceText: Exit
+    TargetNodeGuid: 
+  - BaseNodeGuid: 684f0d0a-9c87-46d0-985f-3e95041bbab4
+    ChoiceText: Exit
+    TargetNodeGuid: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 5848587276972982325
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 8abcc6b5-d149-4b9a-87c6-8959957572da
+        Position:
+          serializedVersion: 2
+          x: 402
+          y: 0
+          width: 379
+          height: 122
+        DialogueLineText: What is it?
+    - rid: 5848587276972982326
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 567515fa-5b5d-426b-ba87-3e80ba50d485
+        Position:
+          serializedVersion: 2
+          x: 893
+          y: -49
+          width: 287
+          height: 98
+        DialogueLineText: Waiting for Speech...
+    - rid: 5848587276972982327
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 0297103c-9851-4326-b75b-022a76fdb614
+        Position:
+          serializedVersion: 2
+          x: 1231
+          y: -49
+          width: 234
+          height: 98
+        DialogueLineText: Speaking...
+    - rid: 5848587276972982328
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 30eda880-4ae3-4aca-9d35-00d037dda487
+        Position:
+          serializedVersion: 2
+          x: 1491
+          y: -49
+          width: 697
+          height: 98
+        DialogueLineText: 'You Said: "Sam want meet you bank". Incorrect! Reason:
+          Improper Grammar. Please Try Again!'
+    - rid: 5848587276972982329
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 2ff48460-fa6d-4c9f-b7a2-7c3a7ed8101a
+        Position:
+          serializedVersion: 2
+          x: 2245
+          y: -49
+          width: 287
+          height: 98
+        DialogueLineText: Waiting for Speech...
+    - rid: 5848587276972982330
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: c7924116-2f99-4670-bf19-d3e2aeff1a6a
+        Position:
+          serializedVersion: 2
+          x: 2599
+          y: -49
+          width: 234
+          height: 98
+        DialogueLineText: Speaking...
+    - rid: 5848587276972982331
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 4beb5dc5-e69e-44f6-9e2e-3f8b5c053cb7
+        Position:
+          serializedVersion: 2
+          x: 2905
+          y: -49
+          width: 587
+          height: 98
+        DialogueLineText: 'You Said: "Sam wants to meet you at the bank tomorrow
+          at noon". Correct!'
+    - rid: 5848587276972982332
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 2bdbda67-b08d-47d1-a943-4ef2858446eb
+        Position:
+          serializedVersion: 2
+          x: 3574
+          y: -49
+          width: 327
+          height: 98
+        DialogueLineText: Thanks for letting me know!
+    - rid: 5848587276972982333
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 9e020bb4-c47e-48ce-ab97-661a2e80ced2
+        Position:
+          serializedVersion: 2
+          x: 893
+          y: 101
+          width: 446
+          height: 170
+        DialogueLineText: Which of the following did Sam want to tell John?
+    - rid: 5848587276972982334
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 0280b715-7056-4fdc-90c7-8d7183f6d92c
+        Position:
+          serializedVersion: 2
+          x: 1394
+          y: 101
+          width: 321
+          height: 98
+        DialogueLineText: Incorrect! Please try again.
+    - rid: 5848587276972982335
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 31da715c-8dcb-4867-b1a1-9e3d9c3c0bf2
+        Position:
+          serializedVersion: 2
+          x: 1394
+          y: 222
+          width: 380
+          height: 98
+        DialogueLineText: '[Correct] Thanks for letting me know!'
+    - rid: 5848587276972982336
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 01e8b43b-2a9a-44e6-b11b-26cc2244243f
+        Position:
+          serializedVersion: 2
+          x: 1869
+          y: 222
+          width: 265
+          height: 98
+        DialogueLineText: Quest Complete!
+    - rid: 5848587276972982337
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 684f0d0a-9c87-46d0-985f-3e95041bbab4
+        Position:
+          serializedVersion: 2
+          x: 3979
+          y: -49
+          width: 265
+          height: 98
+        DialogueLineText: Quest Complete!
