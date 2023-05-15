@@ -24,12 +24,13 @@ public class DialogueGraphEditorWindow : EditorWindow
     {
         VisualElement root = rootVisualElement;
 
-        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/DialogueGraph/Editor/DialogueGraphEditorWindow.uxml");
+        var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Scripts/DialogueGraph/Editor/DialogueGraphEditorWindow.uxml");
         visualTree.CloneTree(root);
 
         // A stylesheet can be added to a VisualElement.
         // The style will be applied to the VisualElement and all of its children.
-        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/DialogueGraph/Editor/DialogueGraphEditorWindow.uss");
+
+        var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Scripts/DialogueGraph/Editor/DialogueGraphEditorWindow.uss");
         root.styleSheets.Add(styleSheet);
 
         m_dialogueGraphView = root.Q<DialogueGraphView>();
