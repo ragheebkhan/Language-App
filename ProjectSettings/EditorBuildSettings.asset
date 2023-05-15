@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Endgame.unity
     guid: d3ec9926c6cff8a47b85ff4f22f3d7b0
+  - enabled: 1
+    path: Assets/Scenes/Coffee_Shop.unity
+    guid: 1ab6be4c59aa94135b41d5d5e2b6b930
   m_configObjects: {}

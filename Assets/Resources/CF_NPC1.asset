@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db66e6369f136fe408fe13c0035dafa5, type: 3}
+  m_Name: CF_NPC1
+  m_EditorClassIdentifier: 
+  StartNode:
+    Guid: 511fd0f5-6319-41f6-803a-9f161a6e1280
+    Position:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    DialogueLineText: Good morning!  How are you doing?
+  Nodes:
+  - rid: 8285252491603607552
+  - rid: 8285252491603607553
+  - rid: 8285252491603607554
+  NodeLinks:
+  - BaseNodeGuid: 511fd0f5-6319-41f6-803a-9f161a6e1280
+    ChoiceText: Good morning!  How are you doing?
+    TargetNodeGuid: abb97bcb-f195-47f5-8b3d-d3f404112994
+  - BaseNodeGuid: abb97bcb-f195-47f5-8b3d-d3f404112994
+    ChoiceText: What can I get you?
+    TargetNodeGuid: f18b7a66-300f-4ee9-b94a-14e3b25e5b1c
+  - BaseNodeGuid: abb97bcb-f195-47f5-8b3d-d3f404112994
+    ChoiceText: What would you like today?
+    TargetNodeGuid: f18b7a66-300f-4ee9-b94a-14e3b25e5b1c
+  - BaseNodeGuid: abb97bcb-f195-47f5-8b3d-d3f404112994
+    ChoiceText: What can I do for you?
+    TargetNodeGuid: f18b7a66-300f-4ee9-b94a-14e3b25e5b1c
+  - BaseNodeGuid: f18b7a66-300f-4ee9-b94a-14e3b25e5b1c
+    ChoiceText: Sure!
+    TargetNodeGuid: 66a8fdae-dd38-4e48-b551-acd9e566fa88
+  - BaseNodeGuid: f18b7a66-300f-4ee9-b94a-14e3b25e5b1c
+    ChoiceText: No problem!
+    TargetNodeGuid: 66a8fdae-dd38-4e48-b551-acd9e566fa88
+  references:
+    version: 2
+    RefIds:
+    - rid: 8285252491603607552
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: abb97bcb-f195-47f5-8b3d-d3f404112994
+        Position:
+          serializedVersion: 2
+          x: 463
+          y: 0
+          width: 291
+          height: 146
+        DialogueLineText: I'm great! Thank you
+    - rid: 8285252491603607553
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 66a8fdae-dd38-4e48-b551-acd9e566fa88
+        Position:
+          serializedVersion: 2
+          x: 1401
+          y: -34
+          width: 270
+          height: 98
+        DialogueLineText: Have a good day!
+    - rid: 8285252491603607554
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: f18b7a66-300f-4ee9-b94a-14e3b25e5b1c
+        Position:
+          serializedVersion: 2
+          x: 1016
+          y: 0
+          width: 298
+          height: 122
+        DialogueLineText: May I have a croisant?

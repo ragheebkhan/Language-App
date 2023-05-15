@@ -6,11 +6,12 @@ TagManager:
   tags:
   - NPC
   - Interactable
+  - Fluid
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 

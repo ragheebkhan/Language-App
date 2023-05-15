@@ -5,6 +5,7 @@ using TMPro;
 
 public class InteractButtonScript : MonoBehaviour, IInteractable
 {
+    
     public InteractionChannel m_interactionChannel;
 
     private void Awake()
@@ -36,6 +37,7 @@ public class InteractButtonScript : MonoBehaviour, IInteractable
     {
         this.gameObject.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = "(E) " + gameObject.name;
         this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        
     }
 
     public void OnLookAway(GameObject gameObject)
