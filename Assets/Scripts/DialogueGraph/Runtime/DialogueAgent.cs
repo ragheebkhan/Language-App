@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using ChatGPTWrapper;
 using UnityEngine.UI;
 using System.Linq;
 using FrostweepGames.Plugins.GoogleCloud.SpeechRecognition;
@@ -106,8 +107,31 @@ public class DialogueAgent : MonoBehaviour, IInteractable
 
     void CheckSpeech(string speech)
     {
-        var analyzer = new TextSimilarityAnalyzer();
-        if(analyzer.IsSimilar((m_currentNode as SpeechNodeData).TargetSpeech, speech))
+        string msg = "User Sentence: " + speech + " Acceptable Answer: " + (m_currentNode as SpeechNodeData).TargetSpeech;
+        ChatGPTInputChecker checker = ChatGPTInputChecker.instance;
+        checker.GradeInput(msg, this.gameObject);
+    }
+
+    void SpeechChecked(string grade)
+    {
+        int equivalence = 0;
+        int substringindex;
+        string reason = "";
+
+        for (int i = 0; i < 20; i++)
+        {
+            if (char.IsDigit(grade[i]))
+            {
+                equivalence = grade[i] - '0';
+                substringindex = grade.IndexOf('R');
+                reason = grade.Substring(substringindex);
+                break;
+            }
+            equivalence = 0;
+            reason = "Bad Data";
+        }
+
+        if (equivalence == 5)
         {
             foreach (Transform child in ButtonPanel.transform)
             {
@@ -128,9 +152,9 @@ public class DialogueAgent : MonoBehaviour, IInteractable
                 Destroy(child.gameObject);
             }
 
-            DialogueText.text = "Incorrect!";
+            DialogueText.text = "Incorrect! " + reason;
             var button = Instantiate(ButtonPrefab);
-            button.GetComponentInChildren<TMP_Text>().text = "Try Again";
+            button.GetComponentInChildren<TMP_Text>().text = " Try Again";
             button.GetComponent<Button>().onClick.AddListener(() => Proceed(m_currentNode.Guid, m_currentGraph));
             button.transform.SetParent(ButtonPanel.transform);
         }
@@ -151,6 +175,8 @@ public class DialogueAgent : MonoBehaviour, IInteractable
 
     public void OnInteract(GameObject gameObject)
     {
+        if (gameObject != this.gameObject)
+            return;
         m_currentNode = null;
         m_currentGraph = null;
 

@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db66e6369f136fe408fe13c0035dafa5, type: 3}
+  m_Name: speechtest
+  m_EditorClassIdentifier: 
+  StartNode:
+    Guid: ca8c9182-16da-4fd5-b298-8127b37bbadf
+    Position:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    DialogueLineText: Start Dialogue
+  Nodes:
+  - rid: 5848587479122444296
+  - rid: 5848587479122444297
+  - rid: 5848587479122444298
+  NodeLinks:
+  - BaseNodeGuid: ca8c9182-16da-4fd5-b298-8127b37bbadf
+    ChoiceText: Start Dialogue
+    TargetNodeGuid: 23e14e8c-5c11-4f6b-b1d8-2ef62bb11f5b
+  - BaseNodeGuid: 23e14e8c-5c11-4f6b-b1d8-2ef62bb11f5b
+    ChoiceText: speech
+    TargetNodeGuid: e3f9f4c3-1f9c-40d4-9411-ea22808577ea
+  - BaseNodeGuid: e3f9f4c3-1f9c-40d4-9411-ea22808577ea
+    ChoiceText: Output
+    TargetNodeGuid: c7da75a1-737b-4094-b428-d31e3a3f5dd2
+  - BaseNodeGuid: c7da75a1-737b-4094-b428-d31e3a3f5dd2
+    ChoiceText: Exit
+    TargetNodeGuid: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 5848587479122444296
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 23e14e8c-5c11-4f6b-b1d8-2ef62bb11f5b
+        Position:
+          serializedVersion: 2
+          x: 280
+          y: 0
+          width: 206
+          height: 98
+        DialogueLineText: Test
+    - rid: 5848587479122444297
+      type: {class: SpeechNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: e3f9f4c3-1f9c-40d4-9411-ea22808577ea
+        Position:
+          serializedVersion: 2
+          x: 513
+          y: 0
+          width: 234
+          height: 118
+        TargetSpeech: Target
+        Instructions: Say Target
+    - rid: 5848587479122444298
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: c7da75a1-737b-4094-b428-d31e3a3f5dd2
+        Position:
+          serializedVersion: 2
+          x: 761
+          y: 0
+          width: 206
+          height: 98
+        DialogueLineText: Bye

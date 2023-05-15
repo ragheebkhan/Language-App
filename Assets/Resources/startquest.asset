@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db66e6369f136fe408fe13c0035dafa5, type: 3}
+  m_Name: startquest
+  m_EditorClassIdentifier: 
+  StartNode:
+    Guid: 3073ee05-ac4e-40d0-b479-3258084c76e8
+    Position:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    DialogueLineText: Hi, I heard you need help.
+  Nodes:
+  - rid: 5848587276972982322
+  - rid: 5848587276972982323
+  - rid: 5848587276972982324
+  NodeLinks:
+  - BaseNodeGuid: 3073ee05-ac4e-40d0-b479-3258084c76e8
+    ChoiceText: Hi, I heard you need help.
+    TargetNodeGuid: 81bf5df4-a1bb-4031-86bb-84db006f2aa6
+  - BaseNodeGuid: 81bf5df4-a1bb-4031-86bb-84db006f2aa6
+    ChoiceText: Sure!
+    TargetNodeGuid: cc6c256c-daab-4b22-8fcb-de0d586e8bbd
+  - BaseNodeGuid: 81bf5df4-a1bb-4031-86bb-84db006f2aa6
+    ChoiceText: Nah.
+    TargetNodeGuid: 7f46b6ca-32a6-4f19-b1a0-6d87c393624c
+  - BaseNodeGuid: cc6c256c-daab-4b22-8fcb-de0d586e8bbd
+    ChoiceText: Exit
+    TargetNodeGuid: 
+  - BaseNodeGuid: 7f46b6ca-32a6-4f19-b1a0-6d87c393624c
+    ChoiceText: Exit
+    TargetNodeGuid: 
+  references:
+    version: 2
+    RefIds:
+    - rid: 5848587276972982322
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 81bf5df4-a1bb-4031-86bb-84db006f2aa6
+        Position:
+          serializedVersion: 2
+          x: 369
+          y: 0
+          width: 789
+          height: 122
+        DialogueLineText: I do, I need to meet John at the Bank tomorrow at noon,
+          but I don't have time to find him. Can you let him know?
+    - rid: 5848587276972982323
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: cc6c256c-daab-4b22-8fcb-de0d586e8bbd
+        Position:
+          serializedVersion: 2
+          x: 1211
+          y: -21
+          width: 536
+          height: 98
+        DialogueLineText: 'New Quest: Tell John to meet Sam at the Bank tomorrow
+          at noon.'
+    - rid: 5848587276972982324
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 7f46b6ca-32a6-4f19-b1a0-6d87c393624c
+        Position:
+          serializedVersion: 2
+          x: 1211
+          y: 106
+          width: 206
+          height: 98
+        DialogueLineText: Man!
