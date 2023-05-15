@@ -4265,14 +4265,16 @@ MonoBehaviour:
   _maxTokens: 500
   _temperature: 0.5
   _chatbotName: ChatGPT
-  _initialPrompt: 
+  _initialPrompt: Given a user sentence and an acceptable sentence, evaluate the
+    user sentence's similarity to the acceptable sentence on a scale from 1-5 and
+    provide a reason for your evaluation.
   chatGPTResponse:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 300432480}
         m_TargetAssemblyTypeName: ChatGPTInputChecker, Assembly-CSharp
         m_MethodName: ReturnGrade
-        m_Mode: 5
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

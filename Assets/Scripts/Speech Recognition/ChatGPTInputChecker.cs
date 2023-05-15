@@ -31,7 +31,6 @@ public class ChatGPTInputChecker : MonoBehaviour
 
     public void ReturnGrade(string grade)
     {
-        Debug.Log("Checker " + grade);
         requester.SendMessage("SpeechChecked", grade);
         requester = null;
     }

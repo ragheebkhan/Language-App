@@ -107,14 +107,13 @@ public class DialogueAgent : MonoBehaviour, IInteractable
 
     void CheckSpeech(string speech)
     {
-        string msg = "User Sentence: " + speech + "Acceptable Answer: " + (m_currentNode as SpeechNodeData).TargetSpeech;
+        string msg = "User Sentence: " + speech + " Acceptable Answer: " + (m_currentNode as SpeechNodeData).TargetSpeech;
         ChatGPTInputChecker checker = ChatGPTInputChecker.instance;
         checker.GradeInput(msg, this.gameObject);
     }
 
     void SpeechChecked(string grade)
     {
-        Debug.Log(grade);
         int equivalence = 0;
         int substringindex;
         string reason = "";
@@ -153,9 +152,9 @@ public class DialogueAgent : MonoBehaviour, IInteractable
                 Destroy(child.gameObject);
             }
 
-            DialogueText.text = "Incorrect!";
+            DialogueText.text = "Incorrect! " + reason;
             var button = Instantiate(ButtonPrefab);
-            button.GetComponentInChildren<TMP_Text>().text = reason + " Try Again";
+            button.GetComponentInChildren<TMP_Text>().text = " Try Again";
             button.GetComponent<Button>().onClick.AddListener(() => Proceed(m_currentNode.Guid, m_currentGraph));
             button.transform.SetParent(ButtonPanel.transform);
         }
