@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db66e6369f136fe408fe13c0035dafa5, type: 3}
+  m_Name: CF_NPC3
+  m_EditorClassIdentifier: 
+  StartNode:
+    Guid: 63246260-e516-4c6d-a50e-e647eb33a22c
+    Position:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    DialogueLineText: 'Good Morning! '
+  Nodes:
+  - rid: 8285252603912912914
+  - rid: 8285252603912912915
+  - rid: 8285252603912912916
+  - rid: 8285252603912912917
+  NodeLinks:
+  - BaseNodeGuid: 63246260-e516-4c6d-a50e-e647eb33a22c
+    ChoiceText: 'Good Morning! '
+    TargetNodeGuid: 7ee1c397-2904-4684-a40f-8cc8b80946ba
+  - BaseNodeGuid: 7ee1c397-2904-4684-a40f-8cc8b80946ba
+    ChoiceText: Yes, we have chocolate doughnuts
+    TargetNodeGuid: 4ecb0330-15d1-4c20-8b23-88cb8dd2ed33
+  - BaseNodeGuid: 7ee1c397-2904-4684-a40f-8cc8b80946ba
+    ChoiceText: Yes, we have chocolate chip cupcakes
+    TargetNodeGuid: 4ecb0330-15d1-4c20-8b23-88cb8dd2ed33
+  - BaseNodeGuid: 7ee1c397-2904-4684-a40f-8cc8b80946ba
+    ChoiceText: 'Yes, we have oreo cupcakes! '
+    TargetNodeGuid: 4ecb0330-15d1-4c20-8b23-88cb8dd2ed33
+  - BaseNodeGuid: 4ecb0330-15d1-4c20-8b23-88cb8dd2ed33
+    ChoiceText: 'One of those, coming up! '
+    TargetNodeGuid: 7e40769f-c40a-4798-9654-99ed8e484bf2
+  - BaseNodeGuid: 4ecb0330-15d1-4c20-8b23-88cb8dd2ed33
+    ChoiceText: You got it!
+    TargetNodeGuid: 7e40769f-c40a-4798-9654-99ed8e484bf2
+  - BaseNodeGuid: 4ecb0330-15d1-4c20-8b23-88cb8dd2ed33
+    ChoiceText: 'No problem! '
+    TargetNodeGuid: 7e40769f-c40a-4798-9654-99ed8e484bf2
+  - BaseNodeGuid: 7e40769f-c40a-4798-9654-99ed8e484bf2
+    ChoiceText: 'You''re welcome! '
+    TargetNodeGuid: 4106846d-9dbe-4a46-8b4d-b5c4be3a2957
+  references:
+    version: 2
+    RefIds:
+    - rid: 8285252603912912914
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 7ee1c397-2904-4684-a40f-8cc8b80946ba
+        Position:
+          serializedVersion: 2
+          x: 412
+          y: 60
+          width: 396
+          height: 146
+        DialogueLineText: Do you have something with chocolate?
+    - rid: 8285252603912912915
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 4106846d-9dbe-4a46-8b4d-b5c4be3a2957
+        Position:
+          serializedVersion: 2
+          x: 1917
+          y: 140
+          width: 266
+          height: 98
+        DialogueLineText: Have a nice day!
+    - rid: 8285252603912912916
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 4ecb0330-15d1-4c20-8b23-88cb8dd2ed33
+        Position:
+          serializedVersion: 2
+          x: 975
+          y: 92
+          width: 387
+          height: 146
+        DialogueLineText: I think I'll take an oreo cookie cupcake
+    - rid: 8285252603912912917
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 7e40769f-c40a-4798-9654-99ed8e484bf2
+        Position:
+          serializedVersion: 2
+          x: 1511
+          y: 118
+          width: 233
+          height: 98
+        DialogueLineText: Thanks!

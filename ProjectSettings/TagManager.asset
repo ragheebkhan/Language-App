@@ -7,6 +7,17 @@ TagManager:
   - NPC
   - Interactable
   - Fluid
+  - Pickup
+  - pickup
+  - Vanilla_Donut
+  - Chocolate_Donut
+  - Strawberry_Donut
+  - Croissant
+  - Cookies
+  - Cookie_Cupcake
+  - Redvelvet_Cupcake
+  - Cherry_Cupcake
+  - Choc_Chip_Cupcake
   layers:
   - Default
   - TransparentFX

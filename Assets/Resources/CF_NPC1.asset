@@ -22,9 +22,9 @@ MonoBehaviour:
       height: 0
     DialogueLineText: Good morning!  How are you doing?
   Nodes:
-  - rid: 8285252491603607552
-  - rid: 8285252491603607553
-  - rid: 8285252491603607554
+  - rid: 8285252603912912899
+  - rid: 8285252603912912900
+  - rid: 8285252603912912901
   NodeLinks:
   - BaseNodeGuid: 511fd0f5-6319-41f6-803a-9f161a6e1280
     ChoiceText: Good morning!  How are you doing?
@@ -47,7 +47,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 8285252491603607552
+    - rid: 8285252603912912899
       type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
       data:
         Guid: abb97bcb-f195-47f5-8b3d-d3f404112994
@@ -58,7 +58,7 @@ MonoBehaviour:
           width: 291
           height: 146
         DialogueLineText: I'm great! Thank you
-    - rid: 8285252491603607553
+    - rid: 8285252603912912900
       type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
       data:
         Guid: 66a8fdae-dd38-4e48-b551-acd9e566fa88
@@ -69,7 +69,7 @@ MonoBehaviour:
           width: 270
           height: 98
         DialogueLineText: Have a good day!
-    - rid: 8285252491603607554
+    - rid: 8285252603912912901
       type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
       data:
         Guid: f18b7a66-300f-4ee9-b94a-14e3b25e5b1c
@@ -77,6 +77,6 @@ MonoBehaviour:
           serializedVersion: 2
           x: 1016
           y: 0
-          width: 298
+          width: 354
           height: 122
-        DialogueLineText: May I have a croisant?
+        DialogueLineText: May I have a Chocolate Cookie?

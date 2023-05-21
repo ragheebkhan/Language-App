@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db66e6369f136fe408fe13c0035dafa5, type: 3}
+  m_Name: CF_NPC2
+  m_EditorClassIdentifier: 
+  StartNode:
+    Guid: 9131bcf4-c446-4290-a424-545bcddb3aad
+    Position:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    DialogueLineText: 'Good Morning! '
+  Nodes:
+  - rid: 8285252603912912902
+  - rid: 8285252603912912903
+  - rid: 8285252603912912904
+  - rid: 8285252603912912905
+  NodeLinks:
+  - BaseNodeGuid: 9131bcf4-c446-4290-a424-545bcddb3aad
+    ChoiceText: 'Good Morning! '
+    TargetNodeGuid: 9483485b-c126-4d5f-840d-5ddcb398b0d2
+  - BaseNodeGuid: 9483485b-c126-4d5f-840d-5ddcb398b0d2
+    ChoiceText: 'What can I get you? '
+    TargetNodeGuid: 523cc71b-2840-4141-8b9c-c96d74404667
+  - BaseNodeGuid: 9483485b-c126-4d5f-840d-5ddcb398b0d2
+    ChoiceText: What do you need today?
+    TargetNodeGuid: 523cc71b-2840-4141-8b9c-c96d74404667
+  - BaseNodeGuid: 523cc71b-2840-4141-8b9c-c96d74404667
+    ChoiceText: Chocolate Donut
+    TargetNodeGuid: 7d90d235-f751-4b07-b789-a8f794a2c3f3
+  - BaseNodeGuid: 523cc71b-2840-4141-8b9c-c96d74404667
+    ChoiceText: A Croissant
+    TargetNodeGuid: 7d90d235-f751-4b07-b789-a8f794a2c3f3
+  - BaseNodeGuid: 523cc71b-2840-4141-8b9c-c96d74404667
+    ChoiceText: A Red Velvet Cupcake
+    TargetNodeGuid: 7d90d235-f751-4b07-b789-a8f794a2c3f3
+  - BaseNodeGuid: 7d90d235-f751-4b07-b789-a8f794a2c3f3
+    ChoiceText: One croissant comming up!
+    TargetNodeGuid: 0944ccee-3031-494a-a179-c7f046b435f9
+  - BaseNodeGuid: 7d90d235-f751-4b07-b789-a8f794a2c3f3
+    ChoiceText: 'A crossant it is! '
+    TargetNodeGuid: 0944ccee-3031-494a-a179-c7f046b435f9
+  - BaseNodeGuid: 7d90d235-f751-4b07-b789-a8f794a2c3f3
+    ChoiceText: 'No problem! '
+    TargetNodeGuid: 0944ccee-3031-494a-a179-c7f046b435f9
+  references:
+    version: 2
+    RefIds:
+    - rid: 8285252603912912902
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 9483485b-c126-4d5f-840d-5ddcb398b0d2
+        Position:
+          serializedVersion: 2
+          x: 400
+          y: -87
+          width: 312
+          height: 122
+        DialogueLineText: Good morning to you too!
+    - rid: 8285252603912912903
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 523cc71b-2840-4141-8b9c-c96d74404667
+        Position:
+          serializedVersion: 2
+          x: 821
+          y: -48
+          width: 480
+          height: 146
+        DialogueLineText: Can you suggest something that goes well with coffee?
+    - rid: 8285252603912912904
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 0944ccee-3031-494a-a179-c7f046b435f9
+        Position:
+          serializedVersion: 2
+          x: 2138
+          y: -157
+          width: 331
+          height: 98
+        DialogueLineText: Can wait to try this croissant
+    - rid: 8285252603912912905
+      type: {class: LineNodeData, ns: , asm: Assembly-CSharp}
+      data:
+        Guid: 7d90d235-f751-4b07-b789-a8f794a2c3f3
+        Position:
+          serializedVersion: 2
+          x: 1518
+          y: -132
+          width: 507
+          height: 146
+        DialogueLineText: 'Those are great choices, but I think I''ll stick with
+          a croissant '
